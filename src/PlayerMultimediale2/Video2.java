@@ -35,9 +35,7 @@ public  class Video2 extends ElementoMultimediale2 implements Riproduci2, Lumino
     @Override
     public void regolaLum(){
         System.out.println("Regola luminosità, scegli un valore tra 1 e 10");
-        int lum = 0;
-
-        for(int i = 0; i<=lum; i++ ){
+               for(int i = 1; i<=lum; i++ ){
             System.out.println("*");
         }
     }

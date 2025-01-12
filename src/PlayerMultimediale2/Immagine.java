@@ -14,8 +14,8 @@ public class Immagine extends ElementoMultimediale2 implements Luminosità {
     @Override
     public void regolaLum() {
         System.out.println("Regola luminosità, scegli un valore tra 1 e 10");
-        int l = 0;
-        for(int i = 0; i<=l; i++ ){
+
+        for(int i = 1; i<=l; i++ ){
             System.out.println("*");
         }
 
