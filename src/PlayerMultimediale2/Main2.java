@@ -1,83 +1,84 @@
 package PlayerMultimediale2;
 
-import PlayerMultimediale.Video;
-
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main2 {
-    public static void main(String[] args){
-
-//creare un if per selezionare se audio, video o immagine
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        System.out.println("Cosa vuoi fare?");
-        System.out.println("Digita: audio, video, immagine");
+        String[] elementi = new String[5];
+        int index = 0;
 
-        String input = scanner.nextLine();
+        while (index < elementi.length) {
+            System.out.println("Cosa vuoi fare?");
+            System.out.println("Digita: audio, video, immagine");
 
- switch (input) {
-     case "audio":
-     System.out.println("Cosa vuoi ascoltare?");
-     String titolo = scanner.nextLine();
-     System.out.println("Chi canta questa canzone?");
-     String autore = scanner.nextLine();
-     int durata = random.nextInt(5);
-     System.out.println("Regola volume (0 a 10)");
-     int volume = scanner.nextInt();
+            String input = scanner.nextLine();
 
-     Audio2 brano = new Audio2(titolo, autore, durata, volume);
-     brano.play();
-     brano.abbassaVolume();
-     brano.alzaVolume();
-     break;
+            switch (input) {
+                case "audio":
+                    System.out.println("Cosa vuoi ascoltare?");
+                    String titoloAudio = scanner.nextLine();
+                    elementi[index] = "Audio: " + titoloAudio;
 
-     case "video":
-         System.out.println("Cosa vuoi guardare?");
-         String t = scanner.nextLine();
+                    System.out.println("Chi canta questa canzone?");
+                    String autore = scanner.nextLine();
+                    int durata = random.nextInt(5);
+                    System.out.println("Regola volume (0 a 10)");
+                    int volume = scanner.nextInt();
+                    scanner.nextLine();
 
-         int d = random.nextInt(10);
+                    Audio2 brano = new Audio2(titoloAudio, autore, durata, volume);
+                    brano.play();
+                    brano.abbassaVolume();
+                    brano.alzaVolume();
+                    break;
 
-         System.out.println("Regola volume (0 a 10)");
-         int v = scanner.nextInt();
+                case "video":
+                    System.out.println("Cosa vuoi guardare?");
+                    String titoloVideo = scanner.nextLine();
+                    elementi[index] = "Video: " + titoloVideo;
 
-         System.out.println("Imposta luminosità");
+                    int durataVideo = random.nextInt(10);
+                    System.out.println("Regola volume (0 a 10)");
+                    int volumeVideo = scanner.nextInt();
+                    System.out.println("Imposta luminosità");
+                    int luminosita = scanner.nextInt();
+                    scanner.nextLine();
 
-         int lum = scanner.nextInt();
-         Video2 video = new Video2(t,d,v,lum);
-         video.play();
-         video.regolaLum();
+                    Video2 video = new Video2(titoloVideo, durataVideo, volumeVideo, luminosita);
+                    video.play();
+                    video.regolaLum();
+                    break;
 
-         break;
+                case "immagine":
+                    System.out.println("Scegli immagine");
+                    String titoloImmagine = scanner.nextLine();
+                    elementi[index] = "Immagine: " + titoloImmagine;
 
-     case "immagine":
-         System.out.println("Scegli immagine");
-         String ti = scanner.nextLine();
+                    System.out.println("Imposta luminosità, valore da 1 a 10");
+                    int luminositaImg = scanner.nextInt();
+                    scanner.nextLine();  // Consume the newline
 
-         System.out.println("Imposta luminosità, valore da 1 a 10");
-         int lu = scanner.nextInt();
-         Immagine img = new Immagine(ti, lu);
-         img.show();
-         img.regolaLum();
-         break;
+                    Immagine img = new Immagine(titoloImmagine, luminositaImg);
+                    img.show();
+                    img.regolaLum();
+                    break;
 
-     default:
-         System.out.println("Scegli un'opzione valida");
- }
-       /* System.out.println("Cosa vuoi guardare?");
-        String t = scanner.nextLine();
-        int d = random.nextInt(10);
-        System.out.println("Regola volume (0 a 10)");
-        int vol = scanner.nextInt();
-*/
-         // Video2 video = new Video2(t, d, vol);
-         // video.play();
+                default:
+                    System.out.println("Scegli un'opzione valida");
+                    index--;
+                    break;
+            }
 
-scanner.close();
+            index++;
+        }
+
+        System.out.println("Contenuto dell'array: " + Arrays.toString(elementi));
+        scanner.close();
     }
-
-
-
 }
